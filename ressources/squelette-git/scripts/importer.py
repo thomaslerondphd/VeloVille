@@ -16,10 +16,12 @@ from sqlalchemy.orm import sessionmaker, DeclarativeBase
 import dotenv
 import datetime
 
-# Résolution du problème d'import : ajout de la racine du projet au sys.path
-CHEMIN_RACINE = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if CHEMIN_RACINE not in sys.path:
-    sys.path.insert(0, CHEMIN_RACINE)
+# Récupère le dossier où se trouve importer.py (scripts/) puis remonte d'un cran (squelette-git/)
+dossier_squelette = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Ajoute ressources/squelette-git au sys.path s'il n'y est pas déjà
+if dossier_squelette not in sys.path:
+    sys.path.insert(0, dossier_squelette)
 
 from api.services.fiabilisation import (
     fiabiliser_station,
