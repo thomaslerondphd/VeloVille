@@ -9,7 +9,7 @@
 --   python -c "import bcrypt; print(bcrypt.checkpw(b'Formation2026!', \
 --     b'<hachage>'))"
 
-INSERT INTO utilisateur (username, mot_de_passe_hash, role) VALUES
+INSERT INTO utilisateurs (username, mot_de_passe_hash, role) VALUES
   ('exploitant01',
    '$2b$12$ej20gmOU7l.L1SOku8K66uV2PMETEc5ub8A.PM.Y.7QGHEvUlBkEi',
    'exploitant'),
