@@ -154,7 +154,7 @@ def test_fiabiliser_incident_nominal_avec_correction_statut():
     }
     res = fiabiliser_incident(ligne, stations_valides)
     assert res["erreur"] is None
-    assert res["donnees"]["statut"] == "en_cours"  # Normalisé
+    assert res["donnees"]["statut"] == "en_cours"  # normalisation du texte
     assert res["avertissement"] is not None
 
 
@@ -169,7 +169,7 @@ def test_fiabiliser_incident_rejet_coherence_dates():
         "station_id": "S001",
         "type_incident": "Panne",
         "statut": "resolu",
-        "date_resolution": "2026-08-25 10:00:00",  # Antérieure (Ligne 29 du journal)
+        "date_resolution": "2026-08-25 10:00:00",  # date intervention antérieure à incident (Ligne 29 du journal)
         "technicien": "Bob"
     }
     res = fiabiliser_incident(ligne, stations_valides)

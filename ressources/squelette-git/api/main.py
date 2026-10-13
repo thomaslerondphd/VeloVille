@@ -29,5 +29,7 @@ def root():
         "documentation": "/docs",
     }
 
-
+@app.get("/sante", tags=["Santé"])
+def verifier_sante():
+    return {"statut": "OK"}
 # python -m uvicorn app.main:app --reload
