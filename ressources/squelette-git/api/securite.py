@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 import bcrypt
 import jwt
 
-from app.config import JWT_ALGORITHM, JWT_EXPIRE_MINUTES, JWT_SECRET
+from api.config import JWT_ALGORITHM, JWT_EXPIRE_MINUTES, JWT_SECRET
 
 
 def hash_password(plain_password: str) -> str:

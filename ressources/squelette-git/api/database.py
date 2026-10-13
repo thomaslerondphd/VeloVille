@@ -7,7 +7,7 @@ fabrique de sessions et la dépendance get_db() utilisée par les routeurs.
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
-from app.config import DATABASE_URL
+from api.config import DATABASE_URL
 
 # L'engine représente la connexion générale entre SQLAlchemy et PostgreSQL.
 engine = create_engine(

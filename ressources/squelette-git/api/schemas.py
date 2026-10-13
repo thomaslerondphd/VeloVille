@@ -91,3 +91,46 @@ class IncidentUpdateStatut(BaseModel):
     """Payload de mise à jour du statut d'un incident."""
 
     statut: str
+
+# Enveloppe de Pagination Générique
+
+
+class PaginatedResponse(BaseModel):
+    """Enveloppe paginée universelle pour les listes de ressources."""
+
+    total: int
+    page: int
+    taille_page: int
+    resultats: List[Any]
+
+
+# Indicateurs Clés de Performance
+
+class ElementActiviteJour(BaseModel):
+    jour: str
+    nb_trajets: int
+
+
+class IndicateurActiviteResponse(BaseModel):
+    donnees: List[ElementActiviteJour]
+
+
+class ElementStationActive(BaseModel):
+    station_id: str
+    nom: str
+    nb_departs: int
+    nb_arrivees: int
+
+
+class IndicateurStationsActivesResponse(BaseModel):
+    donnees: List[ElementStationActive]
+
+
+class ElementIncidentStatut(BaseModel):
+    statut: str
+    nb_incidents: int
+
+
+class IndicateurIncidentsStatutResponse(BaseModel):
+    donnees: List[ElementIncidentStatut]
+    delai_moyen_resolution_heures: Optional[float] = None
