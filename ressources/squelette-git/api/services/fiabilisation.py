@@ -207,7 +207,7 @@ def fiabiliser_incident(ligne, ensemble_stations_valides):
     statut_brut = str(ligne.get("statut", "")).strip().lower()
     avertissement_statut = None
 
-    if statut_brut in ("en cours", "encours"):
+    if statut_brut in ("en cours", "En cours", "encours"):
         statut = "en_cours"
         avertissement_statut = f"Statut corrigé de '{statut_brut}' vers 'en_cours'"
     elif statut_brut in ("ouvert", "en_cours", "resolu"):
