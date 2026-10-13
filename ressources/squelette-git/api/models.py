@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Optional
 from sqlalchemy import String, Integer, Float, DateTime, ForeignKey, CheckConstraint
 from sqlalchemy.orm import Mapped, mapped_column
-from app.database import Base
+from api.database import Base
 
 
 class Utilisateur(Base):

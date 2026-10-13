@@ -32,25 +32,18 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     )
 
 
-def create_access_token(username: str) -> str:
-    """Crée un JWT signé pour l'utilisateur authentifié."""
-
+def create_access_token(username: str, role: str) -> str:
+    """Crée un JWT signé pour l'utilisateur authentifié avec son rôle."""
     now = datetime.now(timezone.utc)
     expiration = now + timedelta(minutes=JWT_EXPIRE_MINUTES)
 
     payload = {
-        # sub ("subject") identifie l'utilisateur auquel appartient le token.
         "sub": username,
-
-        # iat indique quand le token a été créé.
+        "role": role,
         "iat": now,
-
-        # exp fixe la date après laquelle le token n'est plus accepté.
         "exp": expiration,
     }
 
-    # encode() signe le contenu avec JWT_SECRET.
-    # Le token peut être lu, mais une modification casserait sa signature.
     return jwt.encode(
         payload,
         JWT_SECRET,
