@@ -30,7 +30,7 @@ def login(
 
     # On garde le même message pour "utilisateur inconnu" et "mauvais mot de passe".
     # Cela évite de révéler quels usernames existent réellement dans la base.
-    if user is None or not verify_password(data.password, user.password_hash):
+    if user is None or not verify_password(data.password, user.mot_de_passe_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Identifiants invalides",
@@ -38,9 +38,9 @@ def login(
 
     # Le mot de passe n'est utilisé que pendant le login.
     # Une fois authentifié, l'utilisateur reçoit un token.
-    token = create_access_token(user.username)
+    token = create_access_token(user.username, user.role)
 
-    return TokenResponse(access_token=token)
+    return TokenResponse(access_token=token, role=user.role)
 
 
 

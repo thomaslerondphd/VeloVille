@@ -26,13 +26,26 @@ class TokenResponse(BaseModel):
 
 
 class UserResponse(BaseModel):
-    """Utilisateur exposé par l'API sans jamais révéler password_hash."""
+    """Utilisateur retourné par l'API (lecture / authentification) sans identifiant SQL."""
 
     model_config = ConfigDict(from_attributes=True)
 
-    user_id: int
     username: str
     role: str
+
+
+class UserCreate(BaseModel):
+    """Payload pour la création / inscription d'un nouvel utilisateur (l'id sera généré par la BDD)."""
+
+    username: str
+    password: str
+    role: str
+
+
+class UserInDB(UserResponse):
+    """Modèle représentant l'utilisateur stocké en base de données avec son ID généré."""
+
+    user_id: int
 
 
 class RegisterRequest(BaseModel):
@@ -97,12 +110,22 @@ class IncidentUpdateStatut(BaseModel):
 
 class PaginatedResponse(BaseModel):
     """Enveloppe paginée universelle pour les listes de ressources."""
-
+    
+    model_config = ConfigDict(from_attributes=True)
+    
     total: int
     page: int
     taille_page: int
     resultats: List[Any]
 
+class PaginatedStationResponse(BaseModel):
+    """Enveloppe paginée spécifique aux stations."""
+
+    total: int
+    page: int
+    taille_page: int
+    pages: int
+    resultats: List[StationResponse]
 
 # Indicateurs Clés de Performance
 

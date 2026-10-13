@@ -1,3 +1,4 @@
+import math
 from typing import Optional
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy import func, select
@@ -5,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from api.database import get_db
 from api.models import Station
-from api.schemas import PaginatedResponse, StationResponse
+from api.schemas import PaginatedResponse, StationResponse, PaginatedStationResponse
 from api.dependencies import get_current_user
 from api.schemas import UserResponse
 
@@ -16,14 +17,14 @@ router = APIRouter(
 )
 
 
-@router.get("", response_model=PaginatedResponse)
+@router.get("", response_model=PaginatedStationResponse)
 def lister_stations(
     commune: Optional[str] = Query(default=None),
     page: int = Query(default=1, ge=1),
     taille_page: int = Query(default=20, ge=1, le=100),
     db: Session = Depends(get_db),
 ):
-    """Retourne la liste paginée des stations avec filtre optionnel par commune."""
+    """Affiche la liste paginée des stations (mode lecture seule)."""
     stmt_base = select(Station)
     stmt_count = select(func.count()).select_from(Station)
 
@@ -32,18 +33,20 @@ def lister_stations(
         stmt_count = stmt_count.where(Station.commune == commune)
 
     total = db.scalar(stmt_count) or 0
-
+    pages = math.ceil(total / taille_page) if total else 0
     offset = (page - 1) * taille_page
+
     stations = db.scalars(
         stmt_base.order_by(Station.station_id.asc())
         .offset(offset)
         .limit(taille_page)
     ).all()
 
-    return PaginatedResponse(
+    return PaginatedStationResponse(
         total=total,
         page=page,
         taille_page=taille_page,
+        pages=pages,
         resultats=stations,
     )
 
