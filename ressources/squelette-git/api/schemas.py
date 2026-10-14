@@ -127,6 +127,24 @@ class PaginatedStationResponse(BaseModel):
     pages: int
     resultats: List[StationResponse]
 
+class PaginatedTrajetsResponse(BaseModel):
+    """Enveloppe paginée spécifique aux trajets."""
+
+    total: int
+    page: int
+    taille_page: int
+    pages: int
+    resultats: List[TrajetResponse]
+
+class PaginatedIncidentsResponse(BaseModel):
+    """Enveloppe paginée spécifique aux incidents."""
+
+    total: int
+    page: int
+    taille_page: int
+    pages: int
+    resultats: List[IncidentResponse]
+
 # Indicateurs Clés de Performance
 
 class ElementActiviteJour(BaseModel):

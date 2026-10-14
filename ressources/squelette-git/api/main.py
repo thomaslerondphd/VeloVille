@@ -9,7 +9,7 @@ Lancement : uvicorn api.main:app --reload
 
 from fastapi import FastAPI
 
-from api.routers import auth, stations
+from api.routers import auth, stations, trajets, incidents
 
 app = FastAPI(
     title="VéloVille",
@@ -19,6 +19,8 @@ app = FastAPI(
 
 app.include_router(auth.router)
 app.include_router(stations.router)
+app.include_router(trajets.router)
+app.include_router(incidents.router)
 
 
 @app.get("/", tags=["Accueil"])
