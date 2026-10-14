@@ -8,7 +8,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
-import datetime
+from datetime import datetime
 
 from api.database import get_db
 from api.models import Incident

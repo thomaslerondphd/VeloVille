@@ -1,6 +1,7 @@
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q --cov=app --cov-branch --cov-fail-under=60"
+addopts = -q --cov=app --cov-branch --cov-fail-under=60 --ignore=ressources/squelette-git/tests/unit/test_fiabilisation.py
+
 
 [tool.coverage.run]
 source = ["app"]

@@ -21,7 +21,7 @@ router = APIRouter(
     prefix="/indicateurs",
     tags=["Indicateurs"],
     # dependencies=[Depends(get_current_user)],
-    dependencies=[Depends(require_role(["direction"]))]
+    dependencies=[Depends(require_role(["direction", "exploitant"]))]
 )
 
 
