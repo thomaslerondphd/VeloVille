@@ -38,7 +38,7 @@ class Trajet(Base):
     station_arrivee: Mapped[Optional[str]] = mapped_column(String(4), ForeignKey("stations.station_id"), nullable=True)
     depart_horodatage: Mapped[datetime] = mapped_column(DateTime, nullable=False, index=True)
     duree_secondes: Mapped[int] = mapped_column(Integer, nullable=False)
-    type_usager: Mapped[str] = mapped_column(String(10), nullable=False)
+    type_usager: Mapped[str] = mapped_column(String(20), nullable=False)
     usager_ref: Mapped[Optional[str]] = mapped_column(String(9), nullable=True)
 
 
