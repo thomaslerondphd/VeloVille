@@ -8,7 +8,9 @@ sur erreur réseau, délai dépassé ou code HTTP d'erreur.
 import os
 import requests
 import streamlit as st
+import dotenv
 
+dotenv.load_dotenv()
 API_URL = os.getenv("API_URL")
 API_TIMEOUT_SECONDES = int(os.getenv("API_TIMEOUT_SECONDES", "5"))
 
