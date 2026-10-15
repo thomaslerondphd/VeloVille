@@ -13,13 +13,13 @@ from datetime import datetime
 from api.database import get_db
 from api.models import Incident
 from api.schemas import PaginatedResponse, IncidentResponse, PaginatedIncidentsResponse, IncidentUpdateStatut
-from api.dependencies import get_current_user
+from api.dependencies import get_current_user, require_role
 from api.schemas import UserResponse
 
 router = APIRouter(
     prefix="/incidents",
     tags=["Incidents"],
-    dependencies=[Depends(get_current_user)]
+    dependencies=[Depends(require_role(["exploitant"]))]
 )
 
 

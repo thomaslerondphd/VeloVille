@@ -19,11 +19,11 @@ from api.securite import hash_password
 
 load_dotenv()
 
-TEST_DATABASE_URL = os.getenv(
-    "TEST_DATABASE_URL",
+DATABASE_URL_TEST = os.getenv(
+    "DATABASE_URL_TEST",
 )
 
-engine = create_engine(TEST_DATABASE_URL, pool_pre_ping=True)
+engine = create_engine(DATABASE_URL_TEST, pool_pre_ping=True)
 TestingSessionLocal = sessionmaker(
     autocommit=False, autoflush=False, bind=engine
 )
