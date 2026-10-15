@@ -34,7 +34,6 @@ dotenv.load_config() if hasattr(dotenv, "load_config") else dotenv.load_dotenv()
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql+psycopg2://postgres:postgres@localhost:5432/bloc2"
 )
 
 engine = create_engine(DATABASE_URL)

@@ -21,7 +21,6 @@ load_dotenv()
 
 TEST_DATABASE_URL = os.getenv(
     "TEST_DATABASE_URL",
-    "postgresql+psycopg2://postgres:postgres@localhost:5432/bloc2_test",
 )
 
 engine = create_engine(TEST_DATABASE_URL, pool_pre_ping=True)

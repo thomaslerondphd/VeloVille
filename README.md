@@ -1,7 +1,7 @@
 # Projet VéloVille
 
 
-## Bilan de la dernière fiabilisation (2026-10-13 13:47:46)
+## Bilan de la dernière fiabilisation (2026-10-14 16:46:33)
 
 ### 1. Synthèse par entité
 | Entité | Lignes lues | Valides (Chargées) | Avertissements (Modifiées) | Rejets (Erreurs) |
