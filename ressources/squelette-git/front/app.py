@@ -20,7 +20,7 @@ if "username" not in st.session_state:
     st.session_state["username"] = None
 
 st.title("VéloVille")
-st.caption("L'application de gestion des vélos en libre-service de la ville -- ver.1.0.0")
+st.caption("L'application de gestion des vélos en libre-service de la ville -- ver.1.0.1")
 
 if st.session_state["jwt_token"]:
     st.success(

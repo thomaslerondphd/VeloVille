@@ -68,7 +68,7 @@ def sauvegarder_csv_propres(dossier_data, nom_fichier_base, liste_donnees):
     print(f"CSV nettoyé créé : {chemin_sortie}")
 
 
-def generer_rapport_readme(stats_import, chemin_readme="README.md"):
+def generer_rapport_readme(stats_import, chemin_readme="journal des rejets et avertissements.md"):
     """Met à jour le fichier README.md avec le bilan détaillé de l'importation."""
     date_exec = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     

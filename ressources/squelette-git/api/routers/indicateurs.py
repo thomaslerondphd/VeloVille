@@ -9,7 +9,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy import func, select, case
 from sqlalchemy.orm import Session
-from datetime import date
+from datetime import date, datetime, time
 
 from api.database import get_db
 from api.models import Station, Incident, Trajet
@@ -42,10 +42,12 @@ def lister_activite_par_jour(
     ).group_by(jour)
     
     if date_debut:
-        stmt = stmt.where(func.date(Trajet.depart_horodatage) >= date_debut)
+        date_debut_check = datetime.combine(date_debut, time.min)
+        stmt = stmt.where(func.date(Trajet.depart_horodatage) >= date_debut_check)
 
     if date_fin:
-        stmt = stmt.where(func.date(Trajet.depart_horodatage) <= date_fin)
+        date_fin_check = datetime.combine(date_fin, time.max)
+        stmt = stmt.where(func.date(Trajet.depart_horodatage) <= date_fin_check)
 
     stmt = stmt.order_by(jour)
     resultats = db.execute(stmt).all()
